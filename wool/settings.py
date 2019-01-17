@@ -14,6 +14,10 @@ BOT_NAME = 'wool'
 SPIDER_MODULES = ['wool.spiders']
 NEWSPIDER_MODULE = 'wool.spiders'
 
+MAX_PAGE=50
+
+MONGO_URI='localhost'
+MONGO_DB='wool'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'wool (+http://www.yourdomain.com)'
@@ -52,9 +56,9 @@ ROBOTSTXT_OBEY = False
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'wool.middlewares.WoolDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+   'wool.middlewares.RandomUserAgentMiddleware': 543,
+}
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
@@ -64,9 +68,9 @@ ROBOTSTXT_OBEY = False
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'wool.pipelines.WoolPipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'wool.pipelines.MongoPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
